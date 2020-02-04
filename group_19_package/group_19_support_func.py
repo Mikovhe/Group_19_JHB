@@ -10,7 +10,7 @@ def my_sort_func(data):
         sorted_list.append(num)
         data.remove(num)
    
-    return 
+    return sorted_list 
     
 
 def sumvalues(numlist):
