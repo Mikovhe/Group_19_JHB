@@ -10,4 +10,11 @@ def my_sort_func(data):
         sorted_list.append(num)
         data.remove(num)
    
-    return sorted_list
+    return 
+    
+
+def sumvalues(numlist):
+  total=0
+  for num in numlist:
+    total+=num
+  return total
