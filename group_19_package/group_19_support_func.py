@@ -25,3 +25,13 @@ def my_len(data):
     for item in data: 
         count += 1
     return count
+
+def my_median(num_list):
+    s_list = my_sort(num_list)
+    if my_len(s_list)%2 == 1:
+        ind = int(my_len(s_list)/2)
+        return s_list[ind]
+   
+    else:
+        ind = int(my_len(s_list)/2) 
+        return (s_list[ind]+s_list[ind-1])/2
