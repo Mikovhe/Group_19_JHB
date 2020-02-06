@@ -60,3 +60,15 @@ def switch(data,ind1,ind2):
     data[ind2] = value_ind1
 
     return data
+
+
+def my_mean(my_list):
+    '''
+    the function takes in a list of numeric values
+    then returns the mean of the  list.
+    '''
+    from group_19_support_func.py import my_sum
+    from group_19_support_func.py import my_len
+    
+    mean = my_sum(my_list)/my_len(my_list)
+    return(mean)
