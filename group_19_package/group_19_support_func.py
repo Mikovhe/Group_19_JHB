@@ -67,8 +67,6 @@ def my_mean(my_list):
     the function takes in a list of numeric values
     then returns the mean of the  list.
     '''
-    from group_19_support_func.py import my_sum
-    from group_19_support_func.py import my_len
+    return(my_sum(my_list)/my_len(my_list))
+
     
-    mean = my_sum(my_list)/my_len(my_list)
-    return(mean)
