@@ -69,4 +69,15 @@ def my_mean(my_list):
     '''
     return(my_sum(my_list)/my_len(my_list))
 
+
+def my_var(nums):
+    '''
+    This function calculates the variance of the values in the list: nums
+    Remember to replace the sum and len functions with our own functions
+    '''
+    mean=my_mean(nums)
+    varnums=[(num-mean)**2 for num in nums]
+    varvalue=my_sum(varnums)/(my_len(nums))
+    return varvalue
+
     
