@@ -77,7 +77,7 @@ def my_var(nums):
     '''
     mean=my_mean(nums)
     varnums=[(num-mean)**2 for num in nums]
-    varvalue=my_sum(varnums)/(my_len(nums))
+    varvalue=my_sum(varnums)/(my_len(nums)-1)
     return varvalue
 
     
