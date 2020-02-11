@@ -1,4 +1,5 @@
 from group_19_support_func import *
+import pandas as pd
 
 #function 1
 def dictionary_of_metrics(data):
@@ -57,6 +58,12 @@ def number_of_tweets_per_day(df):
     tweets_count_df = df.groupby(['Date']).size().reset_index(name='Tweets').set_index('Date')
     
     return(tweets_count_df)
+
+#function 6
+def word_splitter(df):
+    new_df=[i.lower().split() for i in twitter_df['Tweets']]
+    twitter_df['Split tweets']= new_df
+    return twitter_df
 
 #function 7
 def stop_words_http_remover(df):  
