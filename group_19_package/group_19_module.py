@@ -55,6 +55,18 @@ def dictionary_of_metrics(data):
             'q3': q3} #change some to our functions
             #remember that when index you have to count from zero
 
+########################################################################################
+#function 3
+def date_parser(dates):
+    dates_only = []
+    for date in dates: 
+        date_list = [date[:10],date[10:]]
+        dates_only.append(date_list[0])
+        
+    return (dates_only)
+
+#########################################################################################
+
 #function 4
 def extract_municipality_hashtags(df):
     # your code here
