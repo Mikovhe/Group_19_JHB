@@ -50,16 +50,24 @@ def extract_municipality_hashtags(df):
 
     return df
 
+#function 5
+def number_of_tweets_per_day(df):
+    # your code here
+    df["Date"] = pd.to_datetime([date[:10] for date in df["Date"].to_list()])
+    tweets_count_df = df.groupby(['Date']).size().reset_index(name='Tweets').set_index('Date')
+    
+    return(tweets_count_df)
+
 #function 7
 def stop_words_http_remover(df):  
     '''
     replace split(), lower()
     '''      
     #tokenising the strings
-    df_col=[ x.split()   for x in twitter_df['Tweets']]
+    df_col=[ x.split()   for x in df['Tweets']]
     #removing the stop words
     no_sw=[[ c for c in new if not(c.lower() in stop_words_dict['stopwords'])] for new in df_col]
     #removing the urls and insert it to twitter dictionary
-    twitter_df['Without Stop Words']=[[ x for x in dflist if not('http' in x)] for dflist in no_sw]
-    return twitter_df
+    df['Without Stop Words']=[[ x for x in dflist if not('http' in x)] for dflist in no_sw]
+    return df
 
