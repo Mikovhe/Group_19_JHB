@@ -18,7 +18,43 @@ def dictionary_of_metrics(data):
 
     return result_dict
  
- 
+ #funtion 2
+ import numpy as np
+ def five_num_summary(items):
+    nlen=len(items)#replace the len
+    med_ind=0 #median index initialise
+    q1=0 #quartile 1
+    q3=0 #quartile 3
+    #this block passes
+    items =sorted(items)
+    if nlen%2==0 and nlen%4==0:#even length and quarter of length is int#########PASS
+        q1=sum(items[int(nlen/4-1):int(nlen/4+1)])/2
+        q3=sum(items[int(nlen*(3/4)-1):int(nlen*(3/4)+1)])/2
+        
+    elif nlen%2==0 and nlen%4!=0: #for even length and non even quartile######pass
+        q1=items[nlen//4]
+        q3=items[(nlen*3)//4]
+        
+    elif nlen%2!=0:#for the odd lengths
+        med_ind=nlen//2+1
+        
+        print(type(med_ind/2))#checking the type of number when dividing a number
+        print(med_ind/2)
+        if med_ind%2==0: #when medindex is even
+            q1=sum(items[med_ind//2-1:med_ind//2+1])/2
+            print(q1)
+            q3=sum(items[int(med_ind*(3/2))-2:int((med_ind*(3/2)))])/2
+            print(q3)
+        else:
+            q1=sum(items[med_ind//2-1:med_ind//2+1])/2
+            q3=sum(items[int(med_ind*(3/2)//1-1):int(med_ind*(3/2)//1)+1])/2
+    return {'max':max(items),
+            'median':np.median(items),
+            'min': min(items),
+            'q1': q1,
+            'q3': q3} #change some to our functions
+            #remember that when index you have to count from zero
+
 #function 4
 def extract_municipality_hashtags(df):
     # your code here
