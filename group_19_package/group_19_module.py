@@ -3,8 +3,16 @@ import pandas as pd
 import numpy as np
 
 ###################################################################################
- #function 1
+#function 1
 def dictionary_of_metrics(data):
+    '''
+        Function takes a list of numbers as parameter and returns
+         a dictionary containing the mean, median, maximum, minimum, variance and the
+        standard deviation...
+
+        Example: dictionary_of_metrics([1,2,3,4,5]) == {"mean":3.0,"median":3.0,
+                    }
+    '''
     sorted_list = my_sort(data)
 
     mean = my_mean(data)
@@ -19,25 +27,25 @@ def dictionary_of_metrics(data):
                     'maximum':round(maximum,2),'minimum':round(minimum,2)}
 
     return result_dict
- 
+
 #######################################################################################
 #funtion 2
 def five_num_summary(items):
-    
+
     return {'max':max(items),
             'median':np.median(items),
             'min': min(items),
             'q1': np.quantile(items,0.25),
-            'q3': np.quantile(items,0.75)} 
+            'q3': np.quantile(items,0.75)}
 
 ########################################################################################
 #function 3
 def date_parser(dates):
     dates_only = []
-    for date in dates: 
+    for date in dates:
         date_list = [date[:10],date[10:]]
         dates_only.append(date_list[0])
-        
+
     return (dates_only)
 
 #########################################################################################
@@ -80,7 +88,7 @@ def number_of_tweets_per_day(df):
     # your code here
     df["Date"] = pd.to_datetime([date[:10] for date in df["Date"].to_list()])
     tweets_count_df = df.groupby(['Date']).size().reset_index(name='Tweets').set_index('Date')
-    
+
     return(tweets_count_df)
 
 ##########################################################################################
@@ -92,10 +100,10 @@ def word_splitter(df):
 
 ###########################################################################################
 #function 7
-def stop_words_http_remover(df):  
+def stop_words_http_remover(df):
     '''
     replace split(), lower()
-    '''      
+    '''
     #tokenising the strings
     df_col=[ x.split()   for x in df['Tweets']]
     #removing the stop words
@@ -103,4 +111,3 @@ def stop_words_http_remover(df):
     #removing the urls and insert it to twitter dictionary
     df['Without Stop Words']=[[ x for x in dflist if not('http' in x)] for dflist in no_sw]
     return df
-
