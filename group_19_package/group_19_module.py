@@ -94,9 +94,15 @@ def number_of_tweets_per_day(df):
 ##########################################################################################
 #function 6
 def word_splitter(df):
-    new_df=[i.lower().split() for i in twitter_df['Tweets']]
-    twitter_df['Split tweets']= new_df
-    return twitter_df
+    '''
+    Word splitter takes in a column from a data frame. 
+    The requested column will be broken down into a list of the
+    individual words. The function will create a new column and 
+    insert the list into the new column. 
+    '''
+    new_df=[i.lower().split() for i in df['Tweets']]
+    df['Split tweets']= new_df
+    return df
 
 ###########################################################################################
 #function 7
