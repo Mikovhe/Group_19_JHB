@@ -107,6 +107,10 @@ def dictionary_of_metrics(data):
 #######################################################################################
 #funtion 2
 def five_num_summary(items):
+    '''
+    This function returns the five number summary of the 
+    iterable list or tuple: items
+    '''
 
     return {'max':max(items),
             'median':np.median(items),
@@ -180,16 +184,27 @@ def word_splitter(df,column):
     df['Split tweets']= new_df
     return df
 
-###########################################################################################
+################################################################################
 #function 7
 def stop_words_http_remover(df,stop_words_dict):
     '''
     replace split(), lower()
+    This function removes stop words and urls from a Series of 
+    tweets in a dataframe. The df dataframe must have 'Tweets' column.
+
+    Parameters
+    ----------
+    df: Pandas dataframe
+    stop_words_dict: dictionary of stop words
+
+    Returns
+    -------
+    dataframe 
     '''
     #tokenising the strings
     df_col=[ x.split()   for x in df['Tweets']]
     #removing the stop words
-    no_sw=[[ c for c in new if not(c.lower() in stop_words_dict['stopwords'])] for new in df_col]
+    no_sw=[[ c.lower() for c in new if not(c.lower() in stop_words_dict['stopwords'])] for new in df_col]
     #removing the urls and insert it to twitter dictionary
     df['Without Stop Words']=[[ x for x in dflist if not('http' in x)] for dflist in no_sw]
     return df
