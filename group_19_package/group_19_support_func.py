@@ -30,7 +30,7 @@ def my_sum(numlist):
 
 def my_len(data):
     count = 0
-    for item in data:
+    for _ in data:
         count += 1
     return count
 
