@@ -8,7 +8,7 @@ setup(
     description='statistical utility functions',
     long_description=open('README.md').read(),
     install_requires=['numpy','pandas'],
-    url='https://github.com/<username>/<package-name>',
+    url='https://github.com/Mikovhe/Group_19_JHB.git',
     author='Mukwevho Mukovhe, Jed Chonowitz, Tumelo Mokubi, Percy Mokone, Thabo Ntsekhe ',
     author_email='<Your Email>'
 )
