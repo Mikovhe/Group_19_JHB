@@ -124,7 +124,7 @@ def date_parser(dates):
     dates_only = []
     for date in dates:
         date_list = [date[:10],date[10:]]
-        dates_only.append(date_list[0])
+        dates_only += [date_list[0]]
 
     return (dates_only)
 
@@ -154,8 +154,8 @@ def extract_municipality_hashtags(df,mun_dict):
 
                 mun_handle +=char
 
-        muni_per_tweet.append(municipality)
-        hashtags_per_tweet.append(hash_tags)
+        muni_per_tweet += [municipality]
+        hashtags_per_tweet += [hash_tags]
 
     df['municipality'] = muni_per_tweet
     df['hashtags'] = hashtags_per_tweet
