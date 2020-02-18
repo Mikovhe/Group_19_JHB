@@ -153,7 +153,7 @@ def five_num_summary(items):
     -------
     a dictionary of the five number summary
     '''
-    for element in data:
+    for element in items:
         if isinstance(element, (str,bool)):
             raise ValueError('List should only contain numbers')
 
