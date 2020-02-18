@@ -119,10 +119,9 @@ def dictionary_of_metrics(data):
         standard deviation
     '''
     for element in data:
-        if isinstance(element, str):
+        if isinstance(element, (str,bool)):
             raise ValueError('List should only contain numbers')
-        if isinstance(element, bool):
-            raise ValueError('List should only contain numbers')
+        
     
     sorted_list = my_sort(data)
 
@@ -154,10 +153,8 @@ def five_num_summary(items):
     -------
     a dictionary of the five number summary
     '''
-    for element in items:
-        if isinstance(element, str):
-            raise ValueError('List should only contain numbers')
-        if isinstance(element, bool):
+    for element in data:
+        if isinstance(element, (str,bool)):
             raise ValueError('List should only contain numbers')
 
     return {'max':max(items),
@@ -294,7 +291,7 @@ def stop_words_http_remover(df,stop_words_dict):
     dataframe 
     '''
     #tokenising the strings
-    df_col=[ x.split()   for x in df['Tweets']]
+    df_col=[ my_split(x)   for x in df['Tweets']]
     #removing the stop words
     no_sw=[[ c.lower() for c in new if not(c.lower() in stop_words_dict['stopwords'])] for new in df_col]
     #removing the urls and insert it to twitter dictionary
