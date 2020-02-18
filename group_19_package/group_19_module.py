@@ -6,6 +6,32 @@ import numpy as np
 
 ###################################################################################
 #support functions
+'''
+This functions takes in a sentence and 
+splits the words into a new list.
+_________________________________
+Parameters:
+_________________________________
+Takes in a sentence
+_________________________________
+
+Return
+_________________________________
+Returns the splited words as a list
+'''
+def my_split(values, tmp=''):
+    split_values = []
+    for words in values:
+        if words == ' ':
+            split_values.append(tmp)
+            tmp = ''
+        else:
+            tmp += words
+    if tmp:
+        split_values.append(tmp)
+    return split_values
+
+
 def my_sort(data):
     sorting = True
     while sorting:
@@ -216,8 +242,18 @@ def word_splitter(df,column):
     The requested column will be broken down into a list of the
     individual words. The function will create a new column and 
     insert the list into the new column. 
+
+    Parameters:
+    __________________________________________________
+    DataFrame
+
+    Column from a DataFrame
+    ______________________________________________________
+    Returns :
+    ___________________________________________________
+    New column with the Splitted Tweets
     '''
-    new_df=[i.lower().split() for i in df[column]]
+    new_df=[my_split(i.lower()) for i in df[column]]
     df['Split tweets']= new_df
     return df
 
