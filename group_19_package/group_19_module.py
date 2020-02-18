@@ -118,6 +118,12 @@ def dictionary_of_metrics(data):
     a dictionary containing the mean, median, maximum, minimum, variance and the
         standard deviation
     '''
+    for element in data:
+        if isinstance(element, str):
+            raise ValueError('List should only contain numbers')
+        if isinstance(element, bool):
+            raise ValueError('List should only contain numbers')
+    
     sorted_list = my_sort(data)
 
     mean = my_mean(data)
@@ -148,6 +154,11 @@ def five_num_summary(items):
     -------
     a dictionary of the five number summary
     '''
+    for element in items:
+        if isinstance(element, str):
+            raise ValueError('List should only contain numbers')
+        if isinstance(element, bool):
+            raise ValueError('List should only contain numbers')
 
     return {'max':max(items),
             'median':np.median(items),
@@ -165,7 +176,7 @@ def date_parser(dates):
     returns
     ----------- 
     This function returns the date without the time stamps
-    ''''
+    '''
     dates_only = []
     for date in dates:
         date_list = [date[:10],date[10:]]
