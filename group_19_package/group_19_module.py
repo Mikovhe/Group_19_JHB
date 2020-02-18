@@ -165,6 +165,10 @@ def extract_municipality_hashtags(df,mun_dict):
 ##########################################################################################
 #function 5
 def number_of_tweets_per_day(df):
+    '''
+        the man eats a dog
+
+    '''
     # your code here
     df["Date"] = pd.to_datetime([date[:10] for date in df["Date"].to_list()])
     tweets_count_df = df.groupby(['Date']).size().reset_index(name='Tweets').set_index('Date')
