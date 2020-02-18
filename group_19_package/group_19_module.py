@@ -127,7 +127,7 @@ def date_parser(dates):
     dates_only = []
     for date in dates:
         date_list = [date[:10],date[10:]]
-        dates_only.append(date_list[0])
+        dates_only += [date_list[0]]
 
     return (dates_only)
 
@@ -170,8 +170,8 @@ def extract_municipality_hashtags(df,mun_dict):
 
                 mun_handle +=char
 
-        muni_per_tweet.append(municipality)
-        hashtags_per_tweet.append(hash_tags)
+        muni_per_tweet += [municipality]
+        hashtags_per_tweet += [hash_tags]
 
     df['municipality'] = muni_per_tweet
     df['hashtags'] = hashtags_per_tweet
@@ -182,9 +182,18 @@ def extract_municipality_hashtags(df,mun_dict):
 #function 5
 def number_of_tweets_per_day(df):
     '''
-        haha
+    This function groups tweets based on the date they were posted and returns a dataframe
+    with number of dates per day and dates columns.
+
+    Parameters
+    ----------
+    df: Pandas dataframe
+
+    Returns
+    ---------
+    dataframe 
     '''
-    # your code here
+    
     df["Date"] = pd.to_datetime([date[:10] for date in df["Date"].to_list()])
     tweets_count_df = df.groupby(['Date']).size().reset_index(name='Tweets').set_index('Date')
 
