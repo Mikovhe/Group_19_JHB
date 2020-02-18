@@ -177,8 +177,9 @@ def number_of_tweets_per_day(df):
     ---------
     dataframe 
     '''
-    
+    #Adds a new column 'Dates' to dataframe df with dates in format HH:MM:SS
     df["Date"] = pd.to_datetime([date[:10] for date in df["Date"].to_list()])
+    #Groups with 'Dates' and count the tweets into a new dataframe
     tweets_count_df = df.groupby(['Date']).size().reset_index(name='Tweets').set_index('Date')
 
     return(tweets_count_df)
@@ -196,7 +197,7 @@ def word_splitter(df,column):
     df['Split tweets']= new_df
     return df
 
-################################################################################
+##########################################################################################
 #function 7
 def stop_words_http_remover(df,stop_words_dict):
     '''
