@@ -252,7 +252,7 @@ def number_of_tweets_per_day(df):
 
 ##########################################################################################
 #function 6
-def word_splitter(df,column):
+def word_splitter(df,column='Tweets'):
     '''
     Word splitter takes in a column from a data frame. 
     The requested column will be broken down into a list of the
