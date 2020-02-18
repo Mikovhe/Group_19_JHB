@@ -112,7 +112,15 @@ def dictionary_of_metrics(data):
 def five_num_summary(items):
     '''
     This function returns the five number summary of the 
-    iterable list or tuple: items
+    given items list.
+
+    Parameters
+    ----------
+    items: a list of integers
+
+    Returns
+    -------
+    a dictionary of the five number summary
     '''
 
     return {'max':max(items),
