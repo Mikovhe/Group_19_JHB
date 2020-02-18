@@ -15,12 +15,11 @@ def dictionary_of_metrics(data):
     a dictionary containing the mean, median, maximum, minimum, variance and the
         standard deviation
     '''
-
-    if type(data) != list:
-        raise TypeError(" Entry not a list")
-
-
-
+    for element in data:
+        if isinstance(element, (str,bool)):
+            raise ValueError('List should only contain numbers')
+        
+    
     sorted_list = my_sort(data)
 
     mean = my_mean(data)
@@ -41,8 +40,19 @@ def dictionary_of_metrics(data):
 def five_num_summary(items):
     '''
     This function returns the five number summary of the 
-    iterable list or tuple: items
+    given items list.
+
+    Parameters
+    ----------
+    items: a list of integers
+
+    Returns
+    -------
+    a dictionary of the five number summary
     '''
+    for element in items:
+        if isinstance(element, (str,bool)):
+            raise ValueError('List should only contain numbers')
 
     return {'max':max(items),
             'median':np.median(items),
@@ -53,6 +63,14 @@ def five_num_summary(items):
 ########################################################################################
 #function 3
 def date_parser(dates):
+    ''' 
+    parameters
+    -----------
+    dates: dates including the times 
+    returns
+    ----------- 
+    This function returns the date without the time stamps
+    '''
     dates_only = []
     for date in dates:
         date_list = [date[:10],date[10:]]
@@ -131,7 +149,7 @@ def number_of_tweets_per_day(df):
 
 ##########################################################################################
 #function 6
-def word_splitter(df,column):
+def word_splitter(df,column='Tweets'):
     '''
     Word splitter takes in a column from a data frame. 
     The requested column will be broken down into a list of the
@@ -170,7 +188,7 @@ def stop_words_http_remover(df,stop_words_dict):
     dataframe 
     '''
     #tokenising the strings
-    df_col=[ x.split()   for x in df['Tweets']]
+    df_col=[ my_split(x)   for x in df['Tweets']]
     #removing the stop words
     no_sw=[[ c.lower() for c in new if not(c.lower() in stop_words_dict['stopwords'])] for new in df_col]
     #removing the urls and insert it to twitter dictionary
