@@ -124,6 +124,14 @@ def five_num_summary(items):
 ########################################################################################
 #function 3
 def date_parser(dates):
+    ''' 
+    parameters
+    -----------
+    dates: dates including the times 
+    returns
+    ----------- 
+    This function returns the date without the time stamps
+    ''''
     dates_only = []
     for date in dates:
         date_list = [date[:10],date[10:]]
