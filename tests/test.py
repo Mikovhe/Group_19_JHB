@@ -29,10 +29,10 @@ def test_date_parser():
 
 
 Tweets=['@thulamela #loadsheding is a problem #mukovhe do your job', '@ekhuruleni #izinyokaproblems bring our copper', '@polokwane #toomanytsotsi ba nyakile go nhlaba ka mphaka please help ','did jesus make it to northcliff']
-Dates=['2019-02-23 12:56:53','2019-02-23 11:56:53','2018-05-23 12:56:53','2017-02-23 12:56:53']
+Date=['2019-02-23 12:56:53','2019-02-23 11:56:53','2018-05-23 12:56:53','2017-02-23 12:56:53']
 df1={
     'Tweets': Tweets,
-    'Dates': Dates
+    'Date': Date
 }
 df=pd.DataFrame(df1)
 dict1={
@@ -42,60 +42,24 @@ dict1={
 }
 
 def test_extract_munipality_hashtags():
-    Tweets=['@thulamela #loadsheding is a problem #mukovhe do your job', '@ekhuruleni #izinyokaproblems bring our copper', '@polokwane #toomanytsotsi ba nyakile go nhlaba ka mphaka please help ','did jesus make it to northcliff']
-    Dates=['2019-02-23 12:56:53','2019-02-23 11:56:53','2018-05-23 12:56:53','2017-02-23 12:56:53']
-    df1={
-        'Tweets': Tweets,
-        'Dates': Dates
-    }
-    df=pd.DataFrame(df1)
-    dict1={
-        '@thulamela':'thulamela',
-        '@polokwane':'polokwane',
-        '@ekhuruleni':'ekhuruleni'
-    }
-    result=df.copy()
-    result['municipality']= ['thulamela','ekhuruleni','polokwane', np.nan]
-    result['hashtags']=[['#loadsheding','#mukovhe'], ['#izinyokaproblems'], ['#toomanytsotsi'],np.nan]
-    assert group_19_module.extract_municipality_hashtags(df,dict1)==result
+    assert group_19_module.extract_municipality_hashtags(df.copy(),dict1).loc[0, "hashtags"]==['#loadsheding', '#mukovhe']
 
 def test_number_of_tweets_per_day():
-    resu={
-    'Date': ['2019-02-23','2018-05-23','2017-02-23'],
-    'Tweets' : [2,1,1]
-    }
-    result=pd.DataFrame(resu)
-    result=result.set_index('Date')
-    assert group_19_module.number_of_tweets_per_day(df)==result
+    assert group_19_module.number_of_tweets_per_day(df.copy())['Tweets'][0]==1
 
 def test_word_splitter():
-    reslist=[sentence.split() for sentence in Tweets]
-    func6fd = df.copy()
-    func6fd['Split Tweets'] = [sentence.split() for sentence in Tweets]
-    assert group_19_module.word_splitter(df)==func6fd
-
-def test_stop_words_http_remover():
-    func7fd = df.copy()
-    dm=[['@thulamela',
+    assert group_19_module.word_splitter(df.copy()).loc[0, "Split tweets"]==['@thulamela',
     '#loadsheding',
     'is',
     'a',
+    'problem',
     '#mukovhe',
     'do',
     'your',
-    'job'],
-    ['@ekhuruleni', '#izinyokaproblems', 'our', 'copper'],
-    ['@polokwane',
-    '#toomanytsotsi',
-    'ba',
-    'nyakile',
-    'go',
-    'nhlaba',
-    'ka',
-    'mphaka',
-    'please',
-    'help'],
-    ['did', 'jesus', 'it', 'to', 'northcliff']]
+    'job']
+
+def test_stop_words_http_remover():
+
     stop_words_dict={'stopwords': ['problem', 'bring','make']}
-    func7fd['Without Stop Words']=dm
-    assert group_19_module.stop_words_http_remover(df,stop_words_dict)==func7fd
+
+    assert group_19_module.stop_words_http_remover(df.copy(),stop_words_dict).loc[0, "Without Stop Words"]==['@thulamela', '#loadsheding', 'is', 'a', '#mukovhe', 'do', 'your', 'job']
