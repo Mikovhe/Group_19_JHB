@@ -20,6 +20,19 @@ def my_sort(data):
 
     return(data)
 
+def my_split(values):
+    split_values = []
+    tmp  = ''
+    for words in values:
+        if words == ' ':
+            split_values.append(tmp)
+            tmp = ''
+        else:
+            tmp += words
+    if tmp:
+        split_values.append(tmp)
+    return split_values
+
 
 def my_sum(numlist):
   total=0
