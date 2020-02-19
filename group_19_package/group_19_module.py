@@ -82,14 +82,6 @@ def date_parser(dates):
     -----------
     This function returns the date without the time stamps
     '''
-    if type(dates) != list:
-        raise TypeError('Not a list')
-    for numbers in dates:
-        if isinstance(element, (int, float, bool)):
-            raise ValueError("List should only contain a str") 
-    if my_len(dates)==0:
-        raise ValueError('Empty list provided')
-    
     dates_only = []
     for date in dates:
         date_list = [date[:10],date[10:]]
@@ -100,7 +92,7 @@ def date_parser(dates):
 #########################################################################################
 
 #function 4
-def extract_municipality_hashtags(df,mun_dict = mun_dict):
+def extract_municipality_hashtags(df,mun_dict):
     '''
         Function takes in a data frame and dictionary of
         municipalilties and returns the municipality
@@ -191,7 +183,7 @@ def word_splitter(df,column='Tweets'):
 
 ##########################################################################################
 #function 7
-def stop_words_http_remover(df,stop_words_dict='stop_words_dict'):
+def stop_words_http_remover(df,stop_words_dict=stop_words_dict):
     '''
     replace split(), lower()
     This function removes stop words and urls from a Series of
