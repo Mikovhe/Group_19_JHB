@@ -44,7 +44,7 @@ def test_extract_munipality_hashtags():
     result=df.copy()
     result['municipality']= ['thulamela','ekhuruleni','polokwane', 'NaN']
     result['hashtags']=[['#loadsheding','#mukovhe'], ['#izinyokaproblems'], ['#toomanytsotsi'],'NaN']
-    assert group_19_module.extract_munipality_hashtags(df,dict1)==result
+    assert group_19_module.extract_munipality_hashtags(df,mun_dict = dict1)==result
 
 def test_number_of_tweets_per_day():
     resu={
