@@ -82,6 +82,14 @@ def date_parser(dates):
     -----------
     This function returns the date without the time stamps
     '''
+    if type(dates) != list:
+        raise TypeError('Not a list')
+    for numbers in dates:
+        if isinstance(element, (int, float, bool)):
+            raise ValueError("List should only contain a str") 
+    if my_len(dates)==0:
+        raise ValueError('Empty list provided')
+    
     dates_only = []
     for date in dates:
         date_list = [date[:10],date[10:]]
