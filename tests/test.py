@@ -98,4 +98,4 @@ def test_stop_words_http_remover():
     ['did', 'jesus', 'it', 'to', 'northcliff']]
     stop_words_dict={'stopwords': ['problem', 'bring','make']}
     func7fd['Without Stop Words']=dm
-    assert group_19_module.stop_words_http_remover(df)==func7fd
+    assert group_19_module.stop_words_http_remover(df,stop_words_dict)==func7fd
