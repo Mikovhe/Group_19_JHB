@@ -183,7 +183,7 @@ def word_splitter(df,column='Tweets'):
 
 ##########################################################################################
 #function 7
-def stop_words_http_remover(df,stop_words_dict=stop_words_dict):
+def stop_words_http_remover(df,stop_words_dict):
     '''
     replace split(), lower()
     This function removes stop words and urls from a Series of
