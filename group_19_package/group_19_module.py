@@ -56,13 +56,13 @@ def five_num_summary(items):
     -------
     a dictionary of the five number summary
     '''
-    if type(data) != list:
+    if type(items) != list:
         raise TypeError('Not a list')
     for element in items:
         if isinstance(element, (str,bool)):
             raise ValueError('List should only contain numbers')
 
-    if my_len(data)==0:
+    if my_len(items)==0:
         raise ValueError('Empty list provided')
 
     return {'max':max(items),
