@@ -15,11 +15,17 @@ def dictionary_of_metrics(data):
     a dictionary containing the mean, median, maximum, minimum, variance and the
         standard deviation
     '''
+
+    if type(data) != list:
+        raise TypeError('Not a list')
+
     for element in data:
         if isinstance(element, (str,bool)):
             raise ValueError('List should only contain numbers')
-        
-    
+
+    if my_len(data)==0:
+        raise ValueError('Empty list provided')
+
     sorted_list = my_sort(data)
 
     mean = my_mean(data)
@@ -30,8 +36,8 @@ def dictionary_of_metrics(data):
     std_dev = variance**0.5
 
     result_dict = {"mean":round(mean,2),'median':round(median,2),
-                    'standard deviation':round(std_dev,2),'variance':round(variance,2),
-                    'maximum':round(maximum,2),'minimum':round(minimum,2)}
+                    'std':round(std_dev,2),'variance':round(variance,2),
+                    'max':round(maximum,2),'min':round(minimum,2)}
 
     return result_dict
 
@@ -39,7 +45,7 @@ def dictionary_of_metrics(data):
 #funtion 2
 def five_num_summary(items):
     '''
-    This function returns the five number summary of the 
+    This function returns the five number summary of the
     given items list.
 
     Parameters
@@ -50,9 +56,14 @@ def five_num_summary(items):
     -------
     a dictionary of the five number summary
     '''
+    if type(data) != list:
+        raise TypeError('Not a list')
     for element in items:
         if isinstance(element, (str,bool)):
             raise ValueError('List should only contain numbers')
+
+    if my_len(data)==0:
+        raise ValueError('Empty list provided')
 
     return {'max':max(items),
             'median':np.median(items),
@@ -63,12 +74,12 @@ def five_num_summary(items):
 ########################################################################################
 #function 3
 def date_parser(dates):
-    ''' 
+    '''
     parameters
     -----------
-    dates: dates including the times 
+    dates: dates including the times
     returns
-    ----------- 
+    -----------
     This function returns the date without the time stamps
     '''
     dates_only = []
@@ -81,20 +92,20 @@ def date_parser(dates):
 #########################################################################################
 
 #function 4
-def extract_municipality_hashtags(df,mun_dict):
+def extract_municipality_hashtags(df,mun_dict = mun_dict):
     '''
-        Function takes in a data frame and dictionary of 
-        municipalilties and returns the municipality 
-        mentioned in the tweet as well as the all the hashtags. 
+        Function takes in a data frame and dictionary of
+        municipalilties and returns the municipality
+        mentioned in the tweet as well as the all the hashtags.
 
         parameters
         ----------
         df: pandas dataframe
         mun_dict: municipality dictionary
-        
+
         Returns
         ----------
-        dataframe with added municipalities and hashtags fields. 
+        dataframe with added municipalities and hashtags fields.
     '''
     muni_per_tweet = []
     hashtags_per_tweet = []
@@ -138,7 +149,7 @@ def number_of_tweets_per_day(df):
 
     Returns
     ---------
-    dataframe 
+    dataframe
     '''
     #Adds a new column 'Dates' to dataframe df with dates in format HH:MM:SS
     df["Date"] = pd.to_datetime([date[:10] for date in df["Date"].to_list()])
@@ -151,10 +162,10 @@ def number_of_tweets_per_day(df):
 #function 6
 def word_splitter(df,column='Tweets'):
     '''
-    Word splitter takes in a column from a data frame. 
+    Word splitter takes in a column from a data frame.
     The requested column will be broken down into a list of the
-    individual words. The function will create a new column and 
-    insert the list into the new column. 
+    individual words. The function will create a new column and
+    insert the list into the new column.
 
     Parameters:
     __________________________________________________
@@ -172,10 +183,10 @@ def word_splitter(df,column='Tweets'):
 
 ##########################################################################################
 #function 7
-def stop_words_http_remover(df,stop_words_dict):
+def stop_words_http_remover(df,stop_words_dict='stop_words_dict'):
     '''
     replace split(), lower()
-    This function removes stop words and urls from a Series of 
+    This function removes stop words and urls from a Series of
     tweets in a dataframe. The df dataframe must have 'Tweets' column.
 
     Parameters
@@ -185,7 +196,7 @@ def stop_words_http_remover(df,stop_words_dict):
 
     Returns
     -------
-    dataframe 
+    dataframe
     '''
     #tokenising the strings
     df_col=[ my_split(x)   for x in df['Tweets']]
