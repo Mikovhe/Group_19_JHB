@@ -43,7 +43,7 @@ If Contributing, please make sure to work on the dev branch.
 ## Initial Contributors
 1. Mukwevho Mukovhe
 2. Thabo Ntsekhe
-3. Percy Mokone
+3. Pontsho Percy Mokone
 4. Jed Chonowitz
 5. Tshokelo Mokubi
 
