@@ -62,27 +62,6 @@ def test_word_splitter():
     assert group_19_module.word_splitter(df)==func6fd
 
 def test_stop_words_http_remover():
-    func7fd = df.copy()
-    dm=[['@thulamela',
-    '#loadsheding',
-    'is',
-    'a',
-    '#mukovhe',
-    'do',
-    'your',
-    'job'],
-    ['@ekhuruleni', '#izinyokaproblems', 'our', 'copper'],
-    ['@polokwane',
-    '#toomanytsotsi',
-    'ba',
-    'nyakile',
-    'go',
-    'nhlaba',
-    'ka',
-    'mphaka',
-    'please',
-    'help'],
-    ['did', 'jesus', 'it', 'to', 'northcliff']]
     stop_words_dict={'stopwords': ['problem', 'bring','make']}
-    func7fd['Without Stop Words']=dm
-    assert group_19_module.stop_words_http_remover(df)==func7fd
+
+    assert group_19_module.stop_words_http_remover(df.copy(),stop_words_dict).loc[0, "Without Stop Words"]==['@thulamela', '#loadsheding', 'is', 'a', '#mukovhe', 'do', 'your', 'job']
